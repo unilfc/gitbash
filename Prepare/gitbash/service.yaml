@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: gitbash
+spec:
+  selector:
+    app: gitbash
+  ports:
+    - protocol: TCP
+      port: 80  # Port to expose
+      targetPort: 80  # Port in the container
+  type: ClusterIP  # Use LoadBalancer or NodePort if you need external access
