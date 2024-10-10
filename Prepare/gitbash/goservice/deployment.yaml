@@ -1,29 +1,29 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: gitbash
+  name: git-service
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: gitbash
+      app: git-service
   template:
     metadata:
       labels:
-        app: gitbash
+        app: git-service
     spec:
-      spec:
+      serviceAccountName: git-service-account
       imagePullSecrets:
-        - name: ghcr-secret
+        - name: ghcr-secret 
       containers:
-        - name: gitbash
-          image: ghcr.io/unilfc/gitbash:0.3
+        - name: git-service
+          image: ghcr.io/unilfc/git-service:0.5
           ports:
-            - containerPort: 80
+            - containerPort: 8080
           resources:
             requests:
               memory: "128Mi"
-              cpu: "50m"
+              cpu: "100m"
             limits:
               memory: "256Mi"
-              cpu: "100m"
+              cpu: "200m"
